@@ -1,22 +1,17 @@
-import React, { useContext } from 'react'
-import './Home.css'
-import { store } from '../../context/StoreContext';
-
-
-export default function Home() {
-
-    const {count, setCount, name, setName, arr,setArr} =  useContext(store);
-    console.log("home called");
-    
-    
-    function Increment(){
-       setCount(count+5)
-    }
+import React, { useContext } from "react";
+import Header from '../../components/Header/Header'
+import Menu from '../../components/Menu/Menu'
+import Footer from '../../components/Footer/Footer'
+import { StoreContext } from "../../Context/StoreContext";
+function Home() {
+  const { food_list } = useContext(StoreContext);
   return (
-    <div id='home'>
-      Home.....{count}.....{name}......{arr}
-      <button onClick={Increment}>Click</button>
-
+    <div>
+      <Header />
+      <Menu dishes={food_list}/>
+      <Footer />
     </div>
   )
 }
+
+export default Home

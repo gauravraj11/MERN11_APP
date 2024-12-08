@@ -1,33 +1,37 @@
-import React, { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from "react";
+import { Dishes } from "../shared/dishes"; // Assuming mock data is still needed
 
+// Create the StoreContext
+export const StoreContext = createContext(null);
 
-export const store = createContext();
+const StoreContextProvider = ({ children }) => {
+ 
+  // State variables
+  const [food_list, setFoodList] = useState([]);
+  const [cartItems, setCartItems] = useState({});
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const currency = "₹";
 
-export default function StoreContext({children}) {
+  // Load food list
+  useEffect(() => {
+    setFoodList(Dishes); // Using mock data
+  }, []);
 
-    const[count, setCount]= useState(11);
-    const[name, setName]= useState("GFG");
-    const[arr, setArr]= useState([2,7,9]);
-
-    console.log("StoreContext");
-    
-
-    const obj ={
-        count,
-        setCount,
-        name,
-        setName,
-        arr,
-        setArr
-    }
+  // Context value
+  const contextValue = {
+    food_list,
+    cartItems,
+    setCartItems, // Expose setCartItems
+    token,
+    setToken,
+    currency,
+  };
 
   return (
-
-    <store.Provider value={obj}>
+    <StoreContext.Provider value={contextValue}>
       {children}
-    </store.Provider>
+    </StoreContext.Provider>
+  );
+};
 
-  )
-}
-
-
+export default StoreContextProvider;
