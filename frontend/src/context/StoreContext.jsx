@@ -67,6 +67,12 @@ const StoreContextProvider = ({ children }) => {
     }, 0);
   };
 
+  // useEffect(
+  //    async function(){
+  //     const result = await fetch("https://fakestoreapi.com/products");
+  //     const data = await result.json();
+  //     setFoodList(data);
+  //    }, []);
   // Load food list
   useEffect(() => {
     setFoodList(Dishes); // Using mock data

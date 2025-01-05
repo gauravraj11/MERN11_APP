@@ -21,7 +21,7 @@ app.use(cors())
  connectDB();
 
 // api endpoints
-app.use("/api/user", userRouter)
+app.use("/api/user", userRouter)   //localhost:9000/api/user
 app.use("/api/cart", cartRouter)
 app.use("/api/order",orderRouter)
 
